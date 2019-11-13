@@ -41,11 +41,12 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.utils import platform
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvas
 from kivy.uix.popup import Popup
 from kivy.lang import Builder
 
-from pyGC import kivy_build, FileBrowser
+from pyGC.graph.backend_kivyagg import FigureCanvas
+from pyGC.FileBrowser import FileBrowser
+from pyGC import kivy_build
 from pyGC.help_text import texts
 
 
