@@ -1,4 +1,1 @@
 import pyGC
-
-pyGC()
-
