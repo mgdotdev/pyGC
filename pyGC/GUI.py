@@ -41,12 +41,11 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.utils import platform
-from kivy.garden.filebrowser import FileBrowser
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvas
 from kivy.uix.popup import Popup
 from kivy.lang import Builder
 
-from pyGC import kivy_build
+from pyGC import kivy_build, FileBrowser
 from pyGC.help_text import texts
 
 
@@ -107,10 +106,14 @@ def calc_primer(dataFile):
 
 
 def add_plot(event):
+
+    #if clicked outside of plot, dont do anyting
     if isinstance(event.ydata, (int, float, float64)) is False or isinstance(
             event.xdata, (int, float, float64)) is False or (
     event.ydata, event.xdata) != (
             event.ydata, event.xdata): return
+
+    # add clicked point to the list of initial parameters
     ax.plot(event.xdata, event.ydata, 'o',
             color=(242 / 255, 206 / 255, 14 / 255, 1), markersize=10)[0]
     initials.append([event.ydata, event.xdata])
@@ -118,6 +121,8 @@ def add_plot(event):
 
 
 def pull_plot(self):
+
+    # clears the last item added to the axis, if there is an item
     if len(ax.lines) > 1:
         del ax.lines[-1]
         del initials[-1]
@@ -125,6 +130,8 @@ def pull_plot(self):
 
 
 def pull_all_plots(self):
+
+    # clears all items from plot axis, if there are any items
     if len(ax.lines) > 1:
         del ax.lines[:]
         del initials[:]
@@ -144,6 +151,8 @@ def graph():
 
 
 def graph_popup(self):
+
+    # open the graph controls popup
     App.get_running_app().graph_popup.open()
 
 
@@ -304,12 +313,12 @@ class file_popup(Popup):
         )
 
         browser.bind(
-            on_success=self.fbrowser_success,
-            on_canceled=self.fbrowser_canceled
+            on_success=self.file_browser_success,
+            on_canceled=self.file_browser_canceled
         )
         return browser
 
-    def fbrowser_success(self, instance):
+    def file_browser_success(self, instance):
         file_popup.dismiss(self)
         file = instance.selection
 
@@ -340,7 +349,7 @@ class file_popup(Popup):
 
         fig.canvas.draw()
 
-    def fbrowser_canceled(self, instance):
+    def file_browser_canceled(self, instance):
         file_popup.dismiss(self)
 
 
