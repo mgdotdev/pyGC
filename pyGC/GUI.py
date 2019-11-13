@@ -4,7 +4,8 @@ from matplotlib import pyplot as plt, rcParams
 dummy_fig = plt.figure(dpi=1000)
 plt.close(dummy_fig)
 
-rcParams['font.family'] = 'Times New Roman'
+rcParams['font.family'] = 'serif'
+rcParams['font.sans-serif'] = ['Bookman']
 rcParams['font.size'] = 10
 rcParams['mathtext.fontset'] = 'stix'
 
@@ -295,7 +296,27 @@ def functionalize(data_var, initials_var, condition):
     return plot_data, ledger, val_length
 
 
+def export_to_excel():
+    data_to_exp = plot_data_global[0]
+    ledger = plot_data_global[1]
+    val_length = plot_data_global[2]
+    output_file = file_location_name + ' deconvolution.xlsx'
+    ledger[0] = 'x'
+    df_ledger = {
+        ledger[i]: data_to_exp[:, i]
+        for i in range(val_length + 2)
+    }
+    writer = ExcelWriter(output_file)
+    df1 = DataFrame(df_ledger)
+    df1.to_excel(writer, sheet_name='Sheet1')
+    writer.save()
+    print('done')
+
 class file_popup(Popup):
+    """
+
+Presents the file_popup from FileBrowser.
+    """
 
     def __init__(self, **kwargs):
         super(file_popup, self).__init__(**kwargs)
@@ -355,6 +376,11 @@ class file_popup(Popup):
 
 
 class graph_options(Popup):
+    """
+
+graph options popup for the GC_decon app. Allows for changing graphical bounds
+so to zoom and pan in 4 dimensions. Also toggles data and image exporting.
+    """
 
     def update_graph(self, text):
 
@@ -433,10 +459,21 @@ class graph_options(Popup):
         plt.savefig(file_location_name + ' deconvolution.png')
 
     def export_to_excel_trs(self):
-        Body.export_to_excel(self)
+        export_to_excel()
 
 
 class help_popup(Popup):
+    """
+
+changes the text of the help_popup window depending on the button pressed.
+
+                    ---------------------------------------
+::
+
+    :def help_text(self, event):
+
+takes button information and updates the popup text.
+    """
 
     def help_text(self, event):
 
@@ -474,13 +511,28 @@ class help_popup(Popup):
 
 
 class Graph(BoxLayout):
+    """
 
+adds the graph() widget to the window.
+    """
     def __init__(self, **kwargs):
         super(Graph, self).__init__(**kwargs)
         self.add_widget(graph())
 
 
 class GraphButtons(BoxLayout):
+    """
+
+adds buttons to the app window which allow for graph interaction.
+
+                    ---------------------------------------
+::
+
+    def __init__(self, **kwargs):
+
+adds three buttons to the window which clear the last graph object, clear all
+graph objects, and open the graph_options menu.
+    """
 
     def __init__(self, **kwargs):
         super(GraphButtons, self).__init__(**kwargs)
@@ -497,7 +549,40 @@ class GraphButtons(BoxLayout):
 
 
 class Body(GridLayout):
+    """
 
+App body, inheriting from the Kivy Gridlayout, which binds the button actions
+to the python backend.
+
+                    ---------------------------------------
+::
+
+    :def file_popup(self):
+
+opens the file_popup which allows users to locate GC data on the computer.
+
+                    ---------------------------------------
+::
+
+    :def help_popup(self):
+
+opens the help_popup which contains instructional text for users regarding app
+use.
+
+                    ---------------------------------------
+::
+
+    :def calc(self):
+
+triggers the deconvolution in the function functionalize()
+
+                    ---------------------------------------
+::
+
+    :def reset_app(self):
+
+clears all variables and the graph space.
+    """
     def file_popup(self):
         App.get_running_app().file_popup.open()
 
@@ -513,22 +598,6 @@ class Body(GridLayout):
             condition=self.ids.condition.text
         )
 
-    def export_to_excel(self):
-        data_to_exp = plot_data_global[0]
-        ledger = plot_data_global[1]
-        val_length = plot_data_global[2]
-        output_file = file_location_name + ' deconvolution.xlsx'
-        ledger[0] = 'x'
-        df_ledger = {
-            ledger[i]: data_to_exp[:, i]
-            for i in range(val_length + 2)
-        }
-        writer = ExcelWriter(output_file)
-        df1 = DataFrame(df_ledger)
-        df1.to_excel(writer, sheet_name='Sheet1')
-        writer.save()
-        print('done')
-
     def reset_app(self):
         pull_all_plots(self)
 
@@ -543,7 +612,7 @@ class Meta(BoxLayout):
 
 class GC_decon(App):
     """
-    class which inherets from the Kivy app parent class.
+class which inherets from the Kivy app to initialze the applicaiton.
 
                     ---------------------------------------
 ::

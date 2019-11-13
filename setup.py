@@ -32,6 +32,12 @@ setup(
     python_requires='>=3.6',
 
     install_requires=[
+        'kivy',
+        'numpy',
+        'pandas',
+        'xlrd',
+        'matplotlib',
+        'scipy',
     ],
 
     project_urls={
