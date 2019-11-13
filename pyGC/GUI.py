@@ -142,7 +142,17 @@ def pull_all_plots(self):
 
 
 def graph():
+    """
+graph widget which sits in the application window. Looks graph-y. Called from
+the Meta() class.
 
+                    ---------------------------------------
+::
+
+    :return: wid
+
+the graph widget
+    """
     global fig, ax
     fig = plt.figure(tight_layout=True, dpi=100)
     ax = fig.add_subplot(111)
@@ -153,7 +163,6 @@ def graph():
 
 
 def graph_popup(self):
-
     # open the graph controls popup
     App.get_running_app().graph_popup.open()
 
@@ -510,16 +519,6 @@ takes button information and updates the popup text.
             self.ids.label.text = text
 
 
-class Graph(BoxLayout):
-    """
-
-adds the graph() widget to the window.
-    """
-    def __init__(self, **kwargs):
-        super(Graph, self).__init__(**kwargs)
-        self.add_widget(graph())
-
-
 class GraphButtons(BoxLayout):
     """
 
@@ -603,9 +602,14 @@ clears all variables and the graph space.
 
 
 class Meta(BoxLayout):
+    """
+
+class which is the layout on which the application is built. Contains three
+blocks of widgets - Graph(), GraphButtons(), and Body().
+    """
     def __init__(self, **kwargs):
         super(Meta, self).__init__(**kwargs)
-        self.add_widget(Graph())
+        self.add_widget(graph())
         self.add_widget(GraphButtons())
         self.add_widget(Body())
 
