@@ -32,13 +32,6 @@ setup(
     python_requires='>=3.6',
 
     install_requires=[
-        'numpy',
-        'scipy',
-        'pandas',
-        'pathos',
-        'xlrd',
-        'matplotlib',
-        'cython',
     ],
 
     project_urls={
