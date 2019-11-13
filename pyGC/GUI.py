@@ -49,30 +49,8 @@ from kivy.lang import Builder
 from pyGC import kivy_build
 from pyGC.help_text import texts
 
+
 def calc_primer(dataFile):
-    """
-
-refactors the given user data into actionable permittivity and permeability
-data.
-
-                    ---------------------------------------
-::
-
-    :param dataFile:(file_path)
-
-Permittivity and Permeability data of Nx5 dimensions. Can be a string
-equivalent to the directory and file name of either a .csv or .xlsx of Nx5
-dimensions. Text above and below data array will be automatically avoided by
-the program (most network analysis instruments report data which is compatible
-with the required format).
-
-                    ---------------------------------------
-::
-
-    :return:        data
-
-refactored data set of Nx5 dimensionality in numpy array
-    """
 
     if dataFile is None:
         error_msg = 'Data must be passed as an array which is mappable ' \
@@ -155,6 +133,7 @@ def pull_all_plots(self):
 
 
 def graph():
+
     global fig, ax
     fig = plt.figure(tight_layout=True, dpi=100)
     ax = fig.add_subplot(111)
@@ -162,6 +141,10 @@ def graph():
     wid = FigureCanvas(fig)
     fig.canvas.mpl_connect('button_press_event', add_plot)
     return wid
+
+
+def graph_popup(self):
+    App.get_running_app().graph_popup.open()
 
 
 def functionalize(data_var, initials_var, condition):
@@ -190,6 +173,7 @@ def functionalize(data_var, initials_var, condition):
     if condition == 'Function Type: Asymmetric Gaussian':
 
         for i in range(len(initials_var)):
+
             initials_var[i].append(1)
             initials_var[i].append(0)
 
@@ -205,7 +189,8 @@ def functionalize(data_var, initials_var, condition):
 
             y= sum(
                 gaussian(
-                    x, p[4 * k],
+                    x,
+                    p[4 * k],
                     p[4 * k + 1],
                     p[4 * k + 2],
                     p[4 * k + 3])
@@ -360,6 +345,7 @@ class file_popup(Popup):
 
 
 class graph_options(Popup):
+
     def update_graph(self, text):
 
         if text == 'Up':
@@ -440,7 +426,6 @@ class graph_options(Popup):
         Body.export_to_excel(self)
 
 
-
 class help_popup(Popup):
 
     def help_text(self, event):
@@ -476,10 +461,6 @@ class help_popup(Popup):
         else:
             text = texts(arg='Main')
             self.ids.label.text = text
-
-
-def graph_popup(self):
-    App.get_running_app().graph_popup.open()
 
 
 class Graph(BoxLayout):
