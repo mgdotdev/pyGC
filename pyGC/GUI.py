@@ -52,6 +52,26 @@ from pyGC.help_text import texts
 
 
 def calc_primer(dataFile):
+    """
+
+refactors the given user data into actionable GC data.
+
+                    ---------------------------------------
+::
+
+    :param dataFile:    (file_path)
+
+GC data of Nx2 dimensions. Given as a string equivalent to the directory and
+file name of either a .csv or .xlsx of Nx2 dimensions. Text above and below
+data array will be automatically avoided by the program.
+
+                    ---------------------------------------
+::
+
+    :return:        data
+
+refactored data set of Nx2 dimensionality in numpy array
+    """
 
     if dataFile is None:
         error_msg = 'Data must be passed as an array which is mappable ' \
@@ -108,6 +128,19 @@ def calc_primer(dataFile):
 
 
 def add_plot(event):
+    """
+adds an 'initials' point for each gaussian guess to  the graph. Activated by
+clicking the graph inside the borders.
+
+                    ----------------------------------------
+::
+
+    :param event:       ('button_press_event')
+
+takes a 'button_press_event' from the app and places a point on the graph at
+the click point, and adds that point to the initials list.
+    :return:
+    """
 
     #if clicked outside of plot, dont do anyting
     if isinstance(event.ydata, (int, float, float64)) is False or isinstance(
@@ -168,7 +201,41 @@ def graph_popup(self):
 
 
 def functionalize(data_var, initials_var, condition):
+    """
+main functionalization protocol for pyGC. Takes the user inputs given via the
+GUI and initializes the least square regression analysis of the data for n-set
+of gaussian distrbutions.
 
+                    ---------------------------------------
+::
+
+    :param data_var:        (data)
+
+data_var is the x, y data which is derived from experimentation.
+
+                    ---------------------------------------
+::
+
+    :param initials_var:    (list)
+
+a list of lists which define the n-set of gaussians to fit to the data
+
+                    ---------------------------------------
+::
+
+    :param condition:       (text)
+                            ('Symmetric Gaussian'); 'Asymmetric Gaussian'
+
+defines which function the app will attempt to fit the data set with.
+
+
+    :return:                (tuple)
+                            (plot_data, ledger, val_length)
+
+a len(3) tuple of the necessary data for plotting - the data of each of the
+gaussian distributions, a text ledger for each plot, and the number of
+distributions.
+    """
     val_length = len(initials_var)
     ledger = ['Data', 'Resultant']
 
@@ -319,7 +386,7 @@ def export_to_excel():
     df1 = DataFrame(df_ledger)
     df1.to_excel(writer, sheet_name='Sheet1')
     writer.save()
-    print('done')
+
 
 class file_popup(Popup):
     """
@@ -389,9 +456,37 @@ class graph_options(Popup):
 
 graph options popup for the GC_decon app. Allows for changing graphical bounds
 so to zoom and pan in 4 dimensions. Also toggles data and image exporting.
+
+                    ---------------------------------------
+::
+
+    :Popup:         class
+
+object of class Popup inherited from kivy.
     """
 
     def update_graph(self, text):
+        """
+protocol for updating the matplotlib space. Takes text objects from the
+buttons pushed in the graph_options panel.
+
+                    ---------------------------------------
+::
+
+        :param text:    (text)
+                        "Up", "Down", "Left", "Right", "Contract L/R",
+                        "Expand L/R", "Contract U/D", "Expand U/D", "Center",
+
+text of the button pressed. Options are predefined.
+
+                    ---------------------------------------
+::
+
+        :return:        nothing
+
+automatically toggles a redrawing of the matplotlib graph with updated graph
+parameters.
+        """
 
         if text == 'Up':
             bounds = ax.get_ylim()
@@ -465,9 +560,20 @@ so to zoom and pan in 4 dimensions. Also toggles data and image exporting.
         fig.canvas.draw()
 
     def save_fig(self):
+        """
+saves the graph image of the deconvolutions to the file location of the input
+data.
+
+        :return:        nothing
+        """
         plt.savefig(file_location_name + ' deconvolution.png')
 
     def export_to_excel_trs(self):
+        """
+saves excel data of the deconvolutions to the file location of the input data.
+
+        :return:        nothing
+        """
         export_to_excel()
 
 

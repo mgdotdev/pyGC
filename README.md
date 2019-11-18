@@ -7,4 +7,4 @@ this library can be installed with pip ang git:
 once installed, the application can be run by opening your python
 terminal and running:
 
-    python -m pyGC
+    pyGC-init
