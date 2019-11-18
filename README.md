@@ -1,6 +1,8 @@
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/1mikegrn/pyGC/master?filepath=binder)
 
-This repository has multiple functions:
+# Gas Chromatography and Data Functionalization in Python
+
+This GitHub repository is designed to have multiple functions:
 
 - Act as a Binder host
 - Act as a data/code repository for JCE supplemental
@@ -9,8 +11,8 @@ This repository has multiple functions:
 # Binder
 
 First, this repository includes an example jupyter notebook which is
-linked to binder to allow for tutorials without any necessary
-installation. To use, simply press the 'Binder' button at the top of
+linked to binder, which allows for demonstration without any necessary
+installations. To use, simply press the 'Binder' button at the top of
 this doc.
 
 # Supplemental Files
