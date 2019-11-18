@@ -1,4 +1,23 @@
 def texts(arg):
+    """
+
+just a bunch of text which renders in the help popup - rst option in kivy is
+buggy, check back to see if/when it's working so this can be done nicer.
+
+                    ---------------------------------------
+::
+
+    :param arg:
+
+text parameter argument supplied by the GUI/button press.
+
+                    ---------------------------------------
+::
+
+    :return:        (text)
+
+requested text associated with the arg
+    """
     if arg == 'ID':
         return r'''
         Input Data can be placed into either a Microsoft Excel 

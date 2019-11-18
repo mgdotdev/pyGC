@@ -1,3 +1,9 @@
+"""
+build file for the Kivy builder called in GUI - find it's easier to use a .py
+file to script and then call the KVlang variable to build locally.
+
+"""
+
 KVlang = '''
 
 <Meta>:

@@ -40,6 +40,10 @@ setup(
         'scipy',
     ],
 
+    entry_points={
+        'console_scripts': ['pyGC-init=pyGC.__main__:main']
+    },
+
     project_urls={
         'GitHub': 'https://github.com/1mikegrn/pyGC/',
         'DocSite': 'https://1mikegrn.github.io/pyGC/',
