@@ -13,7 +13,8 @@ This GitHub repository is designed to have multiple functions:
 First, this repository includes an example jupyter notebook which is
 linked to binder, which allows for demonstration without any necessary
 installations. To use, simply press the 'Binder' button at the top of
-this doc.
+this doc. To note, this notebook takes several minutes to spin up, so
+plan accordingly if you choose to use it in presentation.
 
 # Supplemental Files
 
