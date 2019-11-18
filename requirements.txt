@@ -1,7 +1,0 @@
-# requirements are for the jupyter binder functionality, NOT for pyGC.
-# the setup.py automatically handles pyGC requirements on pip install
-
-numpy==1.16.5
-pandas==0.25.1
-matplotlib==3.1.1
-scipy==1.3.1
