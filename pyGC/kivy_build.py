@@ -1,6 +1,9 @@
 """
-build file for the Kivy builder called in GUI - find it's easier to use a .py
-file to script and then call the KVlang variable to build locally.
+:code:`kivy_build.py`
+=====================
+
+build file for the Kivy builder called in GUI - I've found it's easier to use
+a .py file to script KVlang and then call the KVlang variable to build locally.
 
 """
 
@@ -107,7 +110,7 @@ KVlang = '''
                 Button:
                     background_color: (0,1,0,1)
                     text: 'Export data to Excel'
-                    on_release: root.export_to_excel_trs()
+                    on_release: root.export_to_excel()
 
                 Button:
                     background_color: (1,0,0,1)

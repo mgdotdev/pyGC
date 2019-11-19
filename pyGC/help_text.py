@@ -1,22 +1,30 @@
-def texts(arg):
-    """
+"""
+:code:`help_text.py`
+====================
 
 just a bunch of text which renders in the help popup - rst option in kivy is
 buggy, check back to see if/when it's working so this can be done nicer.
 
+"""
+
+def texts(arg):
+    """
+
+function called from GUI - returns multi-line string to be rendered by the app.
+
                     ---------------------------------------
 ::
 
-    :param arg:
+    :param arg:     (str)
 
 text parameter argument supplied by the GUI/button press.
 
                     ---------------------------------------
 ::
 
-    :return:        (text)
+    :return:        (str)
 
-requested text associated with the arg
+requested text associated with the arg.
     """
     if arg == 'ID':
         return r'''

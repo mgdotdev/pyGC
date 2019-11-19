@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyGC: A desktop application for gas chromatography analysis &mdash; pyGC 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> pyGC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">pyGC: A desktop application for gas chromatography analysis</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#library-structure">Library Structure</a></li>
+<li><a class="reference internal" href="#module-pyGC.__main__">pyGC</a><ul>
+<li><a class="reference internal" href="#main-py"><code class="code docutils literal notranslate"><span class="pre">__main__.py</span></code></a></li>
+<li><a class="reference internal" href="#gui-py"><code class="code docutils literal notranslate"><span class="pre">GUI.py</span></code></a></li>
+<li><a class="reference internal" href="#kivy-build-py"><code class="code docutils literal notranslate"><span class="pre">kivy_build.py</span></code></a></li>
+<li><a class="reference internal" href="#help-text-py"><code class="code docutils literal notranslate"><span class="pre">help_text.py</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#about">About</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyGC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>pyGC: A desktop application for gas chromatography analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pygc-a-desktop-application-for-gas-chromatography-analysis">
+<h1>pyGC: A desktop application for gas chromatography analysis<a class="headerlink" href="#pygc-a-desktop-application-for-gas-chromatography-analysis" title="Permalink to this headline">¶</a></h1>
+<p>This site is a docstring repository for the pyGC library, written by
+Michael Green at the University of Missouri-Kansas City.</p>
+<p>Use the tabs on the left-hand side of the page to navigate to the
+various document sections.</p>
+<p>Research was supported by the National Science Foundation under grant
+NSF-1609061.</p>
+<p><strong>Connect:</strong></p>
+<p>Michael Green
+<a class="reference external" href="https://github.com/1mikegrn">&#64;Github</a>
+<a class="reference external" href="https://stackoverflow.com/users/10881573/michael-green?tab=profile">&#64;StackOverflow</a></p>
+</div>
+<div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The pyGC library can be installed via pip and git</p>
+<p><code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/1mikegrn/pyGC</span></code></p>
+<p>Where the setup file will automatically check dependencies and install
+to the main module library. Once installed, simply call the module as
+normal via <code class="code docutils literal notranslate"><span class="pre">pyGC-init</span></code>, and the module will open.</p>
+</div>
+<div class="section" id="library-structure">
+<h1>Library Structure<a class="headerlink" href="#library-structure" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pyGC</span><span class="o">/</span>
+    <span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>         <span class="c1"># initial executable</span>
+    <span class="n">__main__</span><span class="o">.</span><span class="n">py</span>         <span class="c1"># main function called by pyGC-init</span>
+    <span class="n">GUI</span><span class="o">.</span><span class="n">py</span>              <span class="c1"># python back-end which runs the app window/functions</span>
+    <span class="n">kivy_build</span><span class="o">.</span><span class="n">py</span>       <span class="c1"># .py file which holds the KVlang</span>
+    <span class="n">help_text</span><span class="o">.</span><span class="n">py</span>        <span class="c1"># function that returns text for the &#39;help&#39; popup</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-pyGC.__main__">
+<span id="pygc"></span><h1>pyGC<a class="headerlink" href="#module-pyGC.__main__" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="main-py">
+<h2><code class="code docutils literal notranslate"><span class="pre">__main__.py</span></code><a class="headerlink" href="#main-py" title="Permalink to this headline">¶</a></h2>
+<p>module that pyGC-init points to - includes the main() module function. running
+main() initializes the application.</p>
+<dl class="function">
+<dt id="pyGC.__main__.main">
+<code class="sig-prename descclassname">pyGC.__main__.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.__main__.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>main function which pyGC-init toggles to run the kivy application, which
+ultimately calls the run() function in class GUI.GC_decon().</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="n">none</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<span class="target" id="module-pyGC.GUI"></span><div class="section" id="gui-py">
+<h2><code class="code docutils literal notranslate"><span class="pre">GUI.py</span></code><a class="headerlink" href="#gui-py" title="Permalink to this headline">¶</a></h2>
+<p>pyGC’s main application module for spinning up the kivy application. The module
+doesn’t require any code-level modifications - just initialize with the
+pyGC-init command at the terminal and work in the resulting window.</p>
+<p>There are a few things to note in the code that are non-PEP8. The big one is
+the matplotlib spin-up before the application - there’s a bug in kivy which
+changes the window resolution when matplotlib is initialized. Since the whole
+point of this app is to have an interactive matplotlib window, there was no
+avoiding this, and the increased window resolution was actually kind of nice,
+so we initialize a mpl graph before the kivy app so the app gets built with the
+bugged mpl settings instead of refactoring the kivy app after its built.</p>
+<dl class="function">
+<dt id="pyGC.GUI.calc_primer">
+<code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">calc_primer</code><span class="sig-paren">(</span><em class="sig-param">dataFile</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.calc_primer" title="Permalink to this definition">¶</a></dt>
+<dd><p>refactors the given user data from the file_popup into an array of GC data.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">dataFile</span><span class="p">:</span>    <span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GC data of Nx2 dimensions. Given as a string equivalent to the directory and
+file name of either a .csv or .xlsx of Nx2 dimensions. Text above and below
+data array will be automatically avoided by the program.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>            <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>refactored data set of Nx2 dimensionality in numpy array</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyGC.GUI.graph">
+<code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>graph widget which sits in the application window. Looks graph-y. Called from
+the Meta() class.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>returns the graph widget to be added to the application window.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyGC.GUI.add_plot">
+<code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">add_plot</code><span class="sig-paren">(</span><em class="sig-param">event</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.add_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>adds an ‘initials’ point for each gaussian guess to  the graph. Activated by
+clicking the graph inside the borders.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">event</span><span class="p">:</span>       <span class="p">(</span><span class="s1">&#39;button_press_event&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>takes a ‘button_press_event’ from the app and places a point on the graph at
+the click point, and adds that point to the initials list.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>            <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>updates the matplotlib canvas visible on the application screen.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyGC.GUI.functionalize">
+<code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">functionalize</code><span class="sig-paren">(</span><em class="sig-param">data_var</em>, <em class="sig-param">initials_var</em>, <em class="sig-param">condition</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.functionalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>main functionalization protocol for pyGC. Takes the user inputs given via the
+GUI and initializes the least square regression analysis of the data for n-set
+of gaussian distrbutions.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">data_var</span><span class="p">:</span>        <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>data_var is the x, y data which is derived from experimentation, passed through
+from calc_primer.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">initials_var</span><span class="p">:</span>    <span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>a list of lists which define the n-set of gaussians to fit to the data.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">condition</span><span class="p">:</span>       <span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                        <span class="p">(</span><span class="s1">&#39;Symmetric Gaussian&#39;</span><span class="p">);</span> <span class="s1">&#39;Asymmetric Gaussian&#39;</span>
+</pre></div>
+</div>
+<p>defines which function the app will attempt to fit the data set with.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>                <span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>
+                        <span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> <span class="n">ledger</span><span class="p">,</span> <span class="n">val_length</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>a len(3) tuple of the necessary data for plotting - the data of each of the
+gaussian distributions, a text ledger for each plot, and the number of
+distributions.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.GC_decon">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">GC_decon</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.GC_decon" title="Permalink to this definition">¶</a></dt>
+<dd><p>class which inherits from the Kivy App to initialze the applicaiton.</p>
+<dl class="method">
+<dt id="pyGC.GUI.GC_decon.build">
+<code class="sig-name descname">build</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.GC_decon.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the application window and populates it with widgets</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>returns the Meta() class to the App.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.Meta">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">Meta</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>class which is the layout on which the application is built. Contains three
+blocks of widgets:</p>
+<ul class="simple">
+<li><p>graph() - the widget from the graph() function which is placed at the top of
+the Kivy window.</p></li>
+<li><p>GraphButtons() - buttons immediately under the Graph() widget which control
+user options for clearing graph objects.</p></li>
+<li><p>Body() - Buttons which user interacts with to import data and run analysis.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.Body">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">Body</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Body" title="Permalink to this definition">¶</a></dt>
+<dd><p>App body, inheriting from the Kivy Gridlayout, which binds the button actions
+to the python backend.</p>
+<dl class="method">
+<dt id="pyGC.GUI.Body.calc">
+<code class="sig-name descname">calc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Body.calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>triggers deconvolution in the function functionalize() from pressing the
+button “Start” in the main GUI window</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>toggles the “functionalize” function herein, passing the data from the GUI to
+the function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyGC.GUI.Body.file_popup">
+<code class="sig-name descname">file_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Body.file_popup" title="Permalink to this definition">¶</a></dt>
+<dd><p>opens the file_import popup which allows users to locate GC data on the
+computer.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>opens the file_import popup in the kivy application.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyGC.GUI.Body.help_popup">
+<code class="sig-name descname">help_popup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Body.help_popup" title="Permalink to this definition">¶</a></dt>
+<dd><p>opens the help popup which contains instructional text for users regarding app
+use.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>opens the help popup in the kivy application.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyGC.GUI.Body.reset_app">
+<code class="sig-name descname">reset_app</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.Body.reset_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>clears all variables and the graph space.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>    <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>toggles pull_all_plots() via pressing the ‘reset’ button.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.graph_options">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">graph_options</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.graph_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>graph options popup for the GC_decon app. Allows for changing graphical bounds
+so to zoom and pan in 4 dimensions. Also toggles data and image exporting.
+Inherets from Kivy (Popup) parent class.</p>
+<dl class="method">
+<dt id="pyGC.GUI.graph_options.export_to_excel">
+<code class="sig-name descname">export_to_excel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.graph_options.export_to_excel" title="Permalink to this definition">¶</a></dt>
+<dd><p>saves excel data of the deconvolutions to the file location of the input data.
+Doesn’t explicitly take function inputs, but relies on global variables
+returned by functionalize() to save data.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>generates a writer which saves an excel file to the location of the data
+import.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyGC.GUI.graph_options.save_fig">
+<code class="sig-name descname">save_fig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.graph_options.save_fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>saves the graph image of the deconvolutions to the file location of the input
+data.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>saves a <a href="#id1"><span class="problematic" id="id2">*</span></a>png file to the location of the data import.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyGC.GUI.graph_options.update_graph">
+<code class="sig-name descname">update_graph</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.graph_options.update_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>protocol for updating the matplotlib space. Takes text objects from the
+buttons pushed in the graph_options panel.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">text</span><span class="p">:</span>    <span class="p">(</span><span class="n">text</span><span class="p">)</span>
+                <span class="s2">&quot;Up&quot;</span><span class="p">,</span> <span class="s2">&quot;Down&quot;</span><span class="p">,</span> <span class="s2">&quot;Left&quot;</span><span class="p">,</span> <span class="s2">&quot;Right&quot;</span><span class="p">,</span> <span class="s2">&quot;Contract L/R&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Expand L/R&quot;</span><span class="p">,</span> <span class="s2">&quot;Contract U/D&quot;</span><span class="p">,</span> <span class="s2">&quot;Expand U/D&quot;</span><span class="p">,</span> <span class="s2">&quot;Center&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>text of the button pressed. Options are predefined.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>automatically toggles a redrawing of the matplotlib graph with updated graph
+parameters.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.GraphButtons">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">GraphButtons</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.GraphButtons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inherits from BoxLayout, adds buttons to the app window which allow for graph
+interaction.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.file_popup">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">file_popup</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.file_popup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents the file_popup from FileBrowser.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyGC.GUI.help_popup">
+<em class="property">class </em><code class="sig-prename descclassname">pyGC.GUI.</code><code class="sig-name descname">help_popup</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.help_popup" title="Permalink to this definition">¶</a></dt>
+<dd><p>changes the text of the help_popup window depending on the button pressed.</p>
+<dl class="method">
+<dt id="pyGC.GUI.help_popup.help_text">
+<code class="sig-name descname">help_text</code><span class="sig-paren">(</span><em class="sig-param">event</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.GUI.help_popup.help_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>takes button information and updates the popup text.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">event</span><span class="p">:</span>   <span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the string id of the pressed button.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="p">(</span><span class="n">none</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>updates the GUI display without returning information to the class.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<span class="target" id="module-pyGC.kivy_build"></span><div class="section" id="kivy-build-py">
+<h2><code class="code docutils literal notranslate"><span class="pre">kivy_build.py</span></code><a class="headerlink" href="#kivy-build-py" title="Permalink to this headline">¶</a></h2>
+<p>build file for the Kivy builder called in GUI - I’ve found it’s easier to use
+a .py file to script KVlang and then call the KVlang variable to build locally.</p>
+</div>
+<span class="target" id="module-pyGC.help_text"></span><div class="section" id="help-text-py">
+<h2><code class="code docutils literal notranslate"><span class="pre">help_text.py</span></code><a class="headerlink" href="#help-text-py" title="Permalink to this headline">¶</a></h2>
+<p>just a bunch of text which renders in the help popup - rst option in kivy is
+buggy, check back to see if/when it’s working so this can be done nicer.</p>
+<dl class="function">
+<dt id="pyGC.help_text.texts">
+<code class="sig-prename descclassname">pyGC.help_text.</code><code class="sig-name descname">texts</code><span class="sig-paren">(</span><em class="sig-param">arg</em><span class="sig-paren">)</span><a class="headerlink" href="#pyGC.help_text.texts" title="Permalink to this definition">¶</a></dt>
+<dd><p>function called from GUI - returns multi-line string to be rendered by the app.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">param</span> <span class="n">arg</span><span class="p">:</span>     <span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>text parameter argument supplied by the GUI/button press.</p>
+<blockquote>
+<div></div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="k">return</span><span class="p">:</span>        <span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>requested text associated with the arg.</p>
+</dd></dl>
+
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="about">
+<h1>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<p>Michael Green is a PhD candidate under the supervision of Dr. Xiaobo
+Chen at the University of Missouri–Kansas City, Department of Chemistry.
+He received his Bachelors of Science in chemistry with a minor in
+mathematics from the University of Idaho in 2016, and his Masters of
+Science in chemistry from the University of Missouri–Kansas City in
+2019. His research interests include the development, characterization,
+modeling, and application of nanomaterials in light/matter interactions,
+focusing on photolysis, photocatalysis, and microwave absorption, as
+well as short-range matter/matter interactions with a focus in physical
+adsorption.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Contact</span><span class="p">:</span>
+    <span class="n">magwwc</span><span class="nd">@mail</span><span class="o">.</span><span class="n">umkc</span><span class="o">.</span><span class="n">edu</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Michael Green
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

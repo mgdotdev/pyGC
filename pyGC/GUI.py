@@ -1,27 +1,49 @@
+"""
+:code:`GUI.py`
+==============
+
+pyGC's main application module for spinning up the kivy application. The module
+doesn't require any code-level modifications - just initialize with the
+pyGC-init command at the terminal and work in the resulting window.
+
+There are a few things to note in the code that are non-PEP8. The big one is
+the matplotlib spin-up before the application - there's a bug in kivy which
+changes the window resolution when matplotlib is initialized. Since the whole
+point of this app is to have an interactive matplotlib window, there was no
+avoiding this, and the increased window resolution was actually kind of nice,
+so we initialize a mpl graph before the kivy app so the app gets built with the
+bugged mpl settings instead of refactoring the kivy app after its built.
+"""
+
 # open a dummy mpl figure to usurp kivy's rendering protocols
 from matplotlib import pyplot as plt, rcParams
 
-dummy_fig = plt.figure(dpi=1000)
-plt.close(dummy_fig)
+def bug_exploit():
+    dummy_fig = plt.figure(dpi=1000)
+    plt.close(dummy_fig)
 
-rcParams['font.family'] = 'serif'
-rcParams['font.sans-serif'] = ['Bookman']
-rcParams['font.size'] = 10
-rcParams['mathtext.fontset'] = 'stix'
+    rcParams['font.family'] = 'serif'
+    rcParams['font.sans-serif'] = ['Bookman']
+    rcParams['font.size'] = 10
+    rcParams['mathtext.fontset'] = 'stix'
 
-from kivy.config import Config
+    from kivy.config import Config
 
-window_width = 1000
-window_height = 900
+    window_width = 1000
+    window_height = 900
 
-Config.set('graphics', 'width', str(window_width))
-Config.set('graphics', 'height', str(window_height))
-Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+    Config.set('graphics', 'width', str(window_width))
+    Config.set('graphics', 'height', str(window_height))
+    Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+
+# comment this out when building sphinx docs
+# sphinx doesn't like you for using bug exploits at runtime!
+bug_exploit()
 
 from numpy import (
     float64, exp, concatenate,
     arange, delete, sqrt,
-    pi, zeros, array
+    pi, zeros
 )
 
 from pandas import(
@@ -37,6 +59,7 @@ from os.path import(
 from scipy.special import erf
 from scipy.optimize import leastsq
 from scipy.integrate import quad
+
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -54,12 +77,12 @@ from pyGC.help_text import texts
 def calc_primer(dataFile):
     """
 
-refactors the given user data into actionable GC data.
+refactors the given user data from the file_popup into an array of GC data.
 
                     ---------------------------------------
 ::
 
-    :param dataFile:    (file_path)
+    :param dataFile:    (str)
 
 GC data of Nx2 dimensions. Given as a string equivalent to the directory and
 file name of either a .csv or .xlsx of Nx2 dimensions. Text above and below
@@ -68,7 +91,7 @@ data array will be automatically avoided by the program.
                     ---------------------------------------
 ::
 
-    :return:        data
+    :return:            (array)
 
 refactored data set of Nx2 dimensionality in numpy array
     """
@@ -129,6 +152,7 @@ refactored data set of Nx2 dimensionality in numpy array
 
 def add_plot(event):
     """
+
 adds an 'initials' point for each gaussian guess to  the graph. Activated by
 clicking the graph inside the borders.
 
@@ -139,7 +163,13 @@ clicking the graph inside the borders.
 
 takes a 'button_press_event' from the app and places a point on the graph at
 the click point, and adds that point to the initials list.
-    :return:
+
+                    ----------------------------------------
+::
+
+    :return:            (none)
+
+updates the matplotlib canvas visible on the application screen.
     """
 
     #if clicked outside of plot, dont do anyting
@@ -176,15 +206,16 @@ def pull_all_plots(self):
 
 def graph():
     """
+
 graph widget which sits in the application window. Looks graph-y. Called from
 the Meta() class.
 
                     ---------------------------------------
 ::
 
-    :return: wid
+    :return:    (fig)
 
-the graph widget
+returns the graph widget to be added to the application window.
     """
     global fig, ax
     fig = plt.figure(tight_layout=True, dpi=100)
@@ -202,6 +233,7 @@ def graph_popup(self):
 
 def functionalize(data_var, initials_var, condition):
     """
+
 main functionalization protocol for pyGC. Takes the user inputs given via the
 GUI and initializes the least square regression analysis of the data for n-set
 of gaussian distrbutions.
@@ -209,25 +241,28 @@ of gaussian distrbutions.
                     ---------------------------------------
 ::
 
-    :param data_var:        (data)
+    :param data_var:        (array)
 
-data_var is the x, y data which is derived from experimentation.
+data_var is the x, y data which is derived from experimentation, passed through
+from calc_primer.
 
                     ---------------------------------------
 ::
 
     :param initials_var:    (list)
 
-a list of lists which define the n-set of gaussians to fit to the data
+a list of lists which define the n-set of gaussians to fit to the data.
 
                     ---------------------------------------
 ::
 
-    :param condition:       (text)
+    :param condition:       (str)
                             ('Symmetric Gaussian'); 'Asymmetric Gaussian'
 
 defines which function the app will attempt to fit the data set with.
 
+                    ---------------------------------------
+::
 
     :return:                (tuple)
                             (plot_data, ledger, val_length)
@@ -340,7 +375,6 @@ distributions.
             )
 
         for i in range(val_length):
-            print(initials_var)
             ledger.append(str(round(cnst[3 * i + 1], 2)) + '$e^{(x-' + str(
                 round(cnst[3 * i], 2)) + ')^2 / ' + str(
                 round(cnst[3 * i + 2], 2)) + '^2}$' + ' \n Area = ' + str(
@@ -370,22 +404,6 @@ distributions.
     App.get_running_app().graph_popup.open()
 
     return plot_data, ledger, val_length
-
-
-def export_to_excel():
-    data_to_exp = plot_data_global[0]
-    ledger = plot_data_global[1]
-    val_length = plot_data_global[2]
-    output_file = file_location_name + ' deconvolution.xlsx'
-    ledger[0] = 'x'
-    df_ledger = {
-        ledger[i]: data_to_exp[:, i]
-        for i in range(val_length + 2)
-    }
-    writer = ExcelWriter(output_file)
-    df1 = DataFrame(df_ledger)
-    df1.to_excel(writer, sheet_name='Sheet1')
-    writer.save()
 
 
 class file_popup(Popup):
@@ -456,17 +474,12 @@ class graph_options(Popup):
 
 graph options popup for the GC_decon app. Allows for changing graphical bounds
 so to zoom and pan in 4 dimensions. Also toggles data and image exporting.
-
-                    ---------------------------------------
-::
-
-    :Popup:         class
-
-object of class Popup inherited from kivy.
+Inherets from Kivy (Popup) parent class.
     """
 
     def update_graph(self, text):
         """
+
 protocol for updating the matplotlib space. Takes text objects from the
 buttons pushed in the graph_options panel.
 
@@ -482,7 +495,7 @@ text of the button pressed. Options are predefined.
                     ---------------------------------------
 ::
 
-        :return:        nothing
+        :return:        (none)
 
 automatically toggles a redrawing of the matplotlib graph with updated graph
 parameters.
@@ -561,36 +574,74 @@ parameters.
 
     def save_fig(self):
         """
+
 saves the graph image of the deconvolutions to the file location of the input
 data.
 
-        :return:        nothing
+                    ---------------------------------------
+::
+
+        :return:        (none)
+
+saves a *png file to the location of the data import.
         """
         plt.savefig(file_location_name + ' deconvolution.png')
 
-    def export_to_excel_trs(self):
+    def export_to_excel(self):
         """
-saves excel data of the deconvolutions to the file location of the input data.
 
-        :return:        nothing
+saves excel data of the deconvolutions to the file location of the input data.
+Doesn't explicitly take function inputs, but relies on global variables
+returned by functionalize() to save data.
+
+                    ---------------------------------------
+::
+
+        :return:        (none)
+
+generates a writer which saves an excel file to the location of the data
+import.
         """
-        export_to_excel()
+        data_to_exp = plot_data_global[0]
+        ledger = plot_data_global[1]
+        val_length = plot_data_global[2]
+        output_file = file_location_name + ' deconvolution.xlsx'
+        ledger[0] = 'x'
+        df_ledger = {
+            ledger[i]: data_to_exp[:, i]
+            for i in range(val_length + 2)
+        }
+        writer = ExcelWriter(output_file)
+        df1 = DataFrame(df_ledger)
+        df1.to_excel(writer, sheet_name='Sheet1')
+        writer.save()
 
 
 class help_popup(Popup):
     """
 
 changes the text of the help_popup window depending on the button pressed.
+    """
+
+    def help_text(self, event):
+        """
+
+takes button information and updates the popup text.
 
                     ---------------------------------------
 ::
 
-    :def help_text(self, event):
+        :param event:   (str)
 
-takes button information and updates the popup text.
-    """
+the string id of the pressed button.
 
-    def help_text(self, event):
+                    ---------------------------------------
+::
+
+        :return:        (none)
+
+updates the GUI display without returning information to the class.
+        """
 
         if event == 'Input Data':
             text = texts(arg='ID')
@@ -628,18 +679,18 @@ takes button information and updates the popup text.
 class GraphButtons(BoxLayout):
     """
 
-adds buttons to the app window which allow for graph interaction.
-
-                    ---------------------------------------
-::
-
-    def __init__(self, **kwargs):
-
-adds three buttons to the window which clear the last graph object, clear all
-graph objects, and open the graph_options menu.
+Inherits from BoxLayout, adds buttons to the app window which allow for graph
+interaction.
     """
 
     def __init__(self, **kwargs):
+        """
+
+adds three buttons to the window on initialization.
+- :code:`clear last object`: removes from the graph the last added object.
+- :code:`clear graph`: removes all objects from the graph.
+- :code:`graph options`: opens the graph_options menu.
+        """
         super(GraphButtons, self).__init__(**kwargs)
         self.size_hint_y = 0.1
         self.add_widget(
@@ -658,43 +709,52 @@ class Body(GridLayout):
 
 App body, inheriting from the Kivy Gridlayout, which binds the button actions
 to the python backend.
+    """
+    def file_popup(self):
+        """
+
+opens the file_import popup which allows users to locate GC data on the
+computer.
 
                     ---------------------------------------
 ::
 
-    :def file_popup(self):
+        :return:    (none)
 
-opens the file_popup which allows users to locate GC data on the computer.
+opens the file_import popup in the kivy application.
+        """
 
-                    ---------------------------------------
-::
+        App.get_running_app().file_popup.open()
 
-    :def help_popup(self):
+    def help_popup(self):
+        """
 
-opens the help_popup which contains instructional text for users regarding app
+opens the help popup which contains instructional text for users regarding app
 use.
 
                     ---------------------------------------
 ::
 
-    :def calc(self):
+        :return:    (none)
 
-triggers the deconvolution in the function functionalize()
+opens the help popup in the kivy application.
+        """
+        App.get_running_app().help_popup.open()
+
+    def calc(self):
+        """
+
+triggers deconvolution in the function functionalize() from pressing the
+button "Start" in the main GUI window
 
                     ---------------------------------------
 ::
 
-    :def reset_app(self):
+        :return:    (none)
 
-clears all variables and the graph space.
-    """
-    def file_popup(self):
-        App.get_running_app().file_popup.open()
-
-    def help_popup(self):
-        App.get_running_app().help_popup.open()
-
-    def calc(self):
+toggles the "functionalize" function herein, passing the data from the GUI to
+the function.
+        """
 
         global plot_data_global
         plot_data_global = functionalize(
@@ -704,6 +764,17 @@ clears all variables and the graph space.
         )
 
     def reset_app(self):
+        """
+
+clears all variables and the graph space.
+
+                    ---------------------------------------
+::
+
+        :return:    (none)
+
+toggles pull_all_plots() via pressing the 'reset' button.
+        """
         pull_all_plots(self)
 
 
@@ -711,7 +782,13 @@ class Meta(BoxLayout):
     """
 
 class which is the layout on which the application is built. Contains three
-blocks of widgets - Graph(), GraphButtons(), and Body().
+blocks of widgets:
+
+- graph() - the widget from the graph() function which is placed at the top of
+  the Kivy window.
+- GraphButtons() - buttons immediately under the Graph() widget which control
+  user options for clearing graph objects.
+- Body() - Buttons which user interacts with to import data and run analysis.
     """
     def __init__(self, **kwargs):
         super(Meta, self).__init__(**kwargs)
@@ -722,21 +799,8 @@ blocks of widgets - Graph(), GraphButtons(), and Body().
 
 class GC_decon(App):
     """
-class which inherets from the Kivy app to initialze the applicaiton.
 
-                    ---------------------------------------
-::
-
-    :def build(self):
-
-Builds the application window and populates with widgets
-
-                    ---------------------------------------
-::
-
-    :return:        Meta()
-
-the Meta class, which is the application window
+class which inherits from the Kivy App to initialze the applicaiton.
     """
     global initials
     initials = []
@@ -744,6 +808,17 @@ the Meta class, which is the application window
     Builder.load_string(kivy_build.KVlang)
 
     def build(self):
+        """
+
+Builds the application window and populates it with widgets
+
+                    ---------------------------------------
+::
+
+    :return:    (class)
+
+returns the Meta() class to the App.
+        """
         self.help_popup = help_popup()
         self.graph_popup = graph_options()
         self.file_popup = file_popup()
