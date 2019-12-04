@@ -14,7 +14,6 @@ def main():
 main function which pyGC-init toggles to run the kivy application, which
 ultimately calls the run() function in class GUI.GC_decon().
 
-                    ---------------------------------------
 ::
 
     :return:        none

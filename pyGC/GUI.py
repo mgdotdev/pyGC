@@ -79,7 +79,6 @@ def calc_primer(dataFile):
 
 refactors the given user data from the file_popup into an array of GC data.
 
-                    ---------------------------------------
 ::
 
     :param dataFile:    (str)
@@ -88,7 +87,6 @@ GC data of Nx2 dimensions. Given as a string equivalent to the directory and
 file name of either a .csv or .xlsx of Nx2 dimensions. Text above and below
 data array will be automatically avoided by the program.
 
-                    ---------------------------------------
 ::
 
     :return:            (array)
@@ -156,7 +154,6 @@ def add_plot(event):
 adds an 'initials' point for each gaussian guess to  the graph. Activated by
 clicking the graph inside the borders.
 
-                    ----------------------------------------
 ::
 
     :param event:       ('button_press_event')
@@ -164,7 +161,6 @@ clicking the graph inside the borders.
 takes a 'button_press_event' from the app and places a point on the graph at
 the click point, and adds that point to the initials list.
 
-                    ----------------------------------------
 ::
 
     :return:            (none)
@@ -210,7 +206,6 @@ def graph():
 graph widget which sits in the application window. Looks graph-y. Called from
 the Meta() class.
 
-                    ---------------------------------------
 ::
 
     :return:    (fig)
@@ -238,7 +233,6 @@ main functionalization protocol for pyGC. Takes the user inputs given via the
 GUI and initializes the least square regression analysis of the data for n-set
 of gaussian distrbutions.
 
-                    ---------------------------------------
 ::
 
     :param data_var:        (array)
@@ -246,14 +240,12 @@ of gaussian distrbutions.
 data_var is the x, y data which is derived from experimentation, passed through
 from calc_primer.
 
-                    ---------------------------------------
 ::
 
     :param initials_var:    (list)
 
 a list of lists which define the n-set of gaussians to fit to the data.
 
-                    ---------------------------------------
 ::
 
     :param condition:       (str)
@@ -261,7 +253,6 @@ a list of lists which define the n-set of gaussians to fit to the data.
 
 defines which function the app will attempt to fit the data set with.
 
-                    ---------------------------------------
 ::
 
     :return:                (tuple)
@@ -483,7 +474,6 @@ Inherets from Kivy (Popup) parent class.
 protocol for updating the matplotlib space. Takes text objects from the
 buttons pushed in the graph_options panel.
 
-                    ---------------------------------------
 ::
 
         :param text:    (text)
@@ -492,7 +482,6 @@ buttons pushed in the graph_options panel.
 
 text of the button pressed. Options are predefined.
 
-                    ---------------------------------------
 ::
 
         :return:        (none)
@@ -578,7 +567,6 @@ parameters.
 saves the graph image of the deconvolutions to the file location of the input
 data.
 
-                    ---------------------------------------
 ::
 
         :return:        (none)
@@ -594,7 +582,6 @@ saves excel data of the deconvolutions to the file location of the input data.
 Doesn't explicitly take function inputs, but relies on global variables
 returned by functionalize() to save data.
 
-                    ---------------------------------------
 ::
 
         :return:        (none)
@@ -628,14 +615,12 @@ changes the text of the help_popup window depending on the button pressed.
 
 takes button information and updates the popup text.
 
-                    ---------------------------------------
 ::
 
         :param event:   (str)
 
 the string id of the pressed button.
 
-                    ---------------------------------------
 ::
 
         :return:        (none)
@@ -716,7 +701,6 @@ to the python backend.
 opens the file_import popup which allows users to locate GC data on the
 computer.
 
-                    ---------------------------------------
 ::
 
         :return:    (none)
@@ -732,7 +716,6 @@ opens the file_import popup in the kivy application.
 opens the help popup which contains instructional text for users regarding app
 use.
 
-                    ---------------------------------------
 ::
 
         :return:    (none)
@@ -747,7 +730,6 @@ opens the help popup in the kivy application.
 triggers deconvolution in the function functionalize() from pressing the
 button "Start" in the main GUI window
 
-                    ---------------------------------------
 ::
 
         :return:    (none)
@@ -768,7 +750,6 @@ the function.
 
 clears all variables and the graph space.
 
-                    ---------------------------------------
 ::
 
         :return:    (none)
@@ -812,7 +793,6 @@ class which inherits from the Kivy App to initialze the applicaiton.
 
 Builds the application window and populates it with widgets
 
-                    ---------------------------------------
 ::
 
     :return:    (class)

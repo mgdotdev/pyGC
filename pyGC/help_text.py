@@ -12,14 +12,12 @@ def texts(arg):
 
 function called from GUI - returns multi-line string to be rendered by the app.
 
-                    ---------------------------------------
 ::
 
     :param arg:     (str)
 
 text parameter argument supplied by the GUI/button press.
 
-                    ---------------------------------------
 ::
 
     :return:        (str)
