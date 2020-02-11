@@ -21,9 +21,11 @@ We've also included two more notebooks called 'Asymmetric GC integration' and
 'Symmetric GC integration' which are directly available for students to use for
 GC analysis. Open these by pressing the buttons below:
 
-Asymmetric GC integration: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Asymmetric_GC_integration.ipynb)
+### Asymmetric GC integration:
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Asymmetric_GC_integration.ipynb)
 
-Symmetric GC integration: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Symmetric_GC_integration.ipynb)
+### Symmetric GC integration:
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Symmetric_GC_integration.ipynb)
 
 To note, the Binder notebook takes several minutes to spin up, so
 plan accordingly if you choose to use it in presentation. We recommend
