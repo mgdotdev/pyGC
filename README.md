@@ -1,6 +1,3 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/1mikegrn/pyGC/master?filepath=binder)
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/binder/index.ipynb)
-
 # Gas Chromatography and Data Functionalization in Python
 
 This GitHub repository is designed to have multiple functions:
@@ -15,7 +12,18 @@ First, this repository includes an example jupyter notebook which is
 linked to both a binder environment and a google colab environment, 
 which allows for demonstration without any necessary
 installations. To use, simply press either the 'launch Binder' or the 
-'Open in CoLab' button at the top of this doc. 
+'Open in CoLab' button below:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/1mikegrn/pyGC/master?filepath=binder)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/binder/index.ipynb)
+
+We've also included two more notebooks called 'Asymmetric GC integration' and
+'Symmetric GC integration' which are directly available for students to use for
+GC analysis. Open these by pressing the buttons below:
+
+Asymmetric GC integration: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Asymmetric_GC_integration.ipynb)
+
+Symmetric GC integration: [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/1mikegrn/pyGC/blob/master/colab/Symmetric_GC_integration.ipynb)
 
 To note, the Binder notebook takes several minutes to spin up, so
 plan accordingly if you choose to use it in presentation. We recommend
